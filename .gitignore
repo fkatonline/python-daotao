@@ -216,4 +216,9 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
-!/secret.py
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/python-daotao.iml
+.idea/vcs.xml
+secret.py
