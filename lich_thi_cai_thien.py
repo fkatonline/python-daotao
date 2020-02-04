@@ -23,4 +23,4 @@ class LichThi:
         self.driver.find_element_by_name("txtPhongthi").send_keys(gd)
         self.driver.find_element_by_name("txtNgaygio").send_keys(thoi_gian)
         self.driver.find_element_by_name("button1").click()
-        sleep(2)
+        sleep(1)
