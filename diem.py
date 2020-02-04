@@ -3,7 +3,7 @@ import pandas as pd
 from secret import USERNAME, PASSWORD
 
 
-class Diem():
+class Diem:
     def __init__(self):
         self.driver = webdriver.Firefox()
         self.driver.get("https://htql.ctump.edu.vn/quanly")

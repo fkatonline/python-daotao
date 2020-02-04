@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from secret import user_name, password
 
 
-class LichThi():
+class LichThi:
     def __init__(self):
         self.driver = webdriver.Firefox()
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
