@@ -1,11 +1,15 @@
 from selenium import webdriver
 import pandas as pd
+from selenium.webdriver.firefox.options import Options
+
 from secret import USERNAME, PASSWORD
 
 
 class Diem:
     def __init__(self):
-        self.driver = webdriver.Firefox()
+        options = Options()
+        options.headless = True
+        self.driver = webdriver.Firefox(options=options)
         self.driver.get("https://htql.ctump.edu.vn/quanly")
         self.driver.find_element_by_id("quanly").click()
         self.driver.find_element_by_class_name("selected") \
