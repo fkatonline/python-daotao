@@ -5,13 +5,13 @@ from lich_thi_cai_thien import LichThi
 
 
 
-data_diem = []
-bot_diem = Diem()
-for item in data_diem:
-    print(bot_diem.get_diem(item['mssv'], item['mhp']))
-
-
-bot_diem.driver.close()
+# data_diem = []
+# bot_diem = Diem()
+# for item in data_diem:
+#     print(bot_diem.get_diem(item['mssv'], item['mhp']))
+#
+#
+# bot_diem.driver.close()
 
 # data = []
 #
@@ -19,3 +19,6 @@ bot_diem.driver.close()
 # for item in data:
 #     bot.set_lich_tung_sinh_vien(item['mssv'], item['mahp'], item['gd'], item['thoi_gian'])
 #     print(item)
+
+bot = LichThi()
+bot.check_lich_thi()
