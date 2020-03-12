@@ -25,9 +25,8 @@ class LichThi:
         self.driver.find_element_by_name("button1").click()
         sleep(1)
 
-    def check_lich_thi(self):
+    def check_lich_thi(self, data):
         url = "https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php"
-        data = ["YY2502", "YT0402", "YT320", "YY1612", "YY2503", "YY2570", "YY2548"]
         for d in data:
             self.driver.execute_script("window.open('','_blank');")
             self.driver.switch_to.window(self.driver.window_handles[-1])
