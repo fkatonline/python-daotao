@@ -11,6 +11,7 @@ class LichThi:
         self.driver.find_element_by_name("txtUsername").send_keys(user_name)
         element = self.driver.find_element_by_name("txtPassword")
         element.send_keys(password)
+        sleep(0.5)
         element.send_keys(Keys.RETURN)
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
 

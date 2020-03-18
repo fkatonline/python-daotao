@@ -20,13 +20,20 @@ from lich_thi_cai_thien import LichThi
 
 bot = LichThi()
 data = [
-    "YY2101",
-    "YT0108",
-    "YY2511",
-    "YT0003",
-    "YY2539",
-    "YY2545",
-    "RH0410",
-    "YY1607",
+    "YY2401",
+    "YY0803",
+    "YY0801",
+    "DK0209",
+    "CB0102",
+    "YY1123",
+    "YY0933",
+    "YY0934",
+    "YY0807",
+    "RH0207",
+    "DK0301",
+    "DK0301",
+    "CB0201",
+    "DD0401",
+    "YY2537",
 ]
 bot.check_lich_thi(data)
