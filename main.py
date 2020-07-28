@@ -1,6 +1,6 @@
 from time import sleep
 
-from diem import Diem
+from ctump import ctump
 from lich_thi_cai_thien import LichThi
 
 # data_diem = []
@@ -20,20 +20,33 @@ from lich_thi_cai_thien import LichThi
 
 bot = LichThi()
 data = [
-    "YY2401",
-    "YY0803",
-    "YY0801",
-    "DK0209",
-    "CB0102",
-    "YY1123",
-    "YY0933",
-    "YY0934",
-    "YY0807",
-    "RH0207",
-    "DK0301",
-    "DK0301",
-    "CB0201",
-    "DD0401",
-    "YY2537",
+"YY1823",
+"YY1821",
+"YY1704",
+"YY1703",
+"YY1702",
+"YY1701",
+"YY1604",
+"YY1603",
+"YY1602",
+"YY1601",
+"YY1128",
+"YY1105",
+"YY1005",
+"YY0944",
+"YY0907",
+"YY0903",
+"YY0405",
+"YY0404",
+"YY0314",
+"YY0104",
+"YT0504",
+"RH0007",
+"DK0517",
+"DK0502",
+"DK0501",
+"CB0401",
+"CB0304",
+"CB0110"
 ]
 bot.check_lich_thi(data)

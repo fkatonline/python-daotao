@@ -5,7 +5,7 @@ from selenium.webdriver.firefox.options import Options
 from secret import USERNAME, PASSWORD
 
 
-class Diem:
+class ctump:
     def __init__(self):
         options = Options()
         options.headless = True
