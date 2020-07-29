@@ -14,6 +14,7 @@ class Ctump:
         # options.headless = True
         # self.driver = webdriver.Firefox(options=options)
         self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(5)
         self.driver.get("https://htql.ctump.edu.vn/quanly")
         self.driver.find_element_by_id("quanly").click()
         self.driver.find_element_by_class_name("selected") \
@@ -41,7 +42,6 @@ class Ctump:
             self.driver.execute_script("window.open('','_blank');")
             self.driver.switch_to.window(self.driver.window_handles[-1])
             self.driver.get(url)
-            sleep(1)
             self.driver.find_element_by_id("txt_sr_frm_ma_sinh_vien").send_keys(m)
             self.driver.find_element_by_id("cmb_s_sr_frm").click()
             try:
@@ -50,10 +50,10 @@ class Ctump:
                 self.driver.switch_to.alert.accept()
             except:
                 pass
-    def xoa_diem(self,data):
+
+    def xoa_diem(self, data):
         for d in data:
             self.driver.get("https://htql.ctump.edu.vn/quanly/diem/nhapdiemhocphan")
-            sleep(2)
             self.driver.find_element_by_id("txt_sr_index_ma_mon_hoc").send_keys(d["mahp"])
             self.driver.find_element_by_id("cmb_s_sr_index").click()
             self.driver.find_element_by_id("rd_list_nhap_0").click()
