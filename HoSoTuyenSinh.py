@@ -20,11 +20,10 @@ class HoSoTuyenSinh:
         sleep(1)
         self.driver.find_element_by_xpath("//a[contains(@href,'sua_hoso.php')]").click()
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        self.driver.find_element_by_id("dvht11").click()
 
 
 bot = HoSoTuyenSinh()
-list_of_maso = [286705, 827944, 177055, 578120, 518597, 277921]
+list_of_maso = []
 for maso in list_of_maso:
     try:
         bot.nhap(maso)

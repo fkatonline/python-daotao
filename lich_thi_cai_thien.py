@@ -34,3 +34,11 @@ class LichThi:
             self.driver.get(url)
             self.driver.find_element_by_id("txtHP").send_keys(d)
             self.driver.find_element_by_name("Submit").click()
+
+    def dong_tien(self, masv):
+        self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
+        self.driver.find_element_by_name("txtSV").send_keys(masv)
+        self.driver.find_element_by_name("txtSV").send_keys(Keys.ENTER)
+
+bot = LichThi()
+bot.dong_tien(1553010345)
