@@ -12,13 +12,14 @@ class HoSoTuyenSinh:
         self.driver.find_element_by_name('txtPassword').submit()
 
     def nhap(self, ma_ho_so):
+        edit_button = "//a[contains(@href,'sua_hoso.php')]"
         self.driver.execute_script("window.open('','_blank');")
         self.driver.switch_to.window(self.driver.window_handles[-1])
         self.driver.get("https://htql.ctump.edu.vn/ctump/tuyensinh/admin/hoso.php")
         self.driver.find_element_by_id("maso").send_keys(ma_ho_so)
         self.driver.find_element_by_name("ewwe").submit()
         sleep(1)
-        self.driver.find_element_by_xpath("//a[contains(@href,'sua_hoso.php')]").click()
+        self.driver.find_element_by_xpath(edit_button).click()
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 

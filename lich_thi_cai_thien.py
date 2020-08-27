@@ -40,5 +40,6 @@ class LichThi:
         self.driver.find_element_by_name("txtSV").send_keys(masv)
         self.driver.find_element_by_name("txtSV").send_keys(Keys.ENTER)
 
+
 bot = LichThi()
-bot.dong_tien(1553010345)
+bot.dong_tien(1653040075)
