@@ -7,6 +7,7 @@ from secret import user_name, password
 class LichThi:
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
         self.driver.find_element_by_name("txtUsername").send_keys(user_name)
