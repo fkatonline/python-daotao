@@ -6,7 +6,7 @@ from secret import user_name, password
 
 class LichThi:
     def __init__(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
         self.driver.find_element_by_name("txtUsername").send_keys(user_name)
@@ -42,22 +42,34 @@ class LichThi:
         self.driver.find_element_by_name("txtSV").send_keys(Keys.ENTER)
 
 
-# bot = LichThi()
-# bot.dong_tien(1653040075)
-
-data = [
-    {
-        "mssv": 1653040035,
-        "mahp": "YT0130",
-        "gd": "12.KY",
-        "thoi_gian": "17g30-31-08-2020"
-    }
-]
 bot = LichThi()
-i = 1
-for item in data:
-    bot.set_lich_tung_sinh_vien(item['mssv'], item['mahp'], item['gd'], item['thoi_gian'])
-    print(i, end=' ')
-    print(item)
-    i = i + 1
-bot.driver.quit()
+bot.dong_tien(1853011033)
+
+# data = [
+#     {
+#         "mssv": 1653040035,
+#         "mahp": "YT0130",
+#         "gd": "12.KY",
+#         "thoi_gian": "17g30-31-08-2020"
+#     }
+# ]
+# bot = LichThi()
+# i = 1
+# for item in data:
+#     bot.set_lich_tung_sinh_vien(item['mssv'], item['mahp'], item['gd'], item['thoi_gian'])
+#     print(i, end=' ')
+#     print(item)
+#     i = i + 1
+# bot.driver.quit()
+# data = [
+#     "CB0303",
+#     "CB0303",
+#     "DK0501",
+#     "DK0501",
+#     "DK0408",
+#     "YT0319",
+#     "YT0503",
+#     "DD0303",
+#     "YY2525"
+# ]
+# bot.check_lich_thi(data)

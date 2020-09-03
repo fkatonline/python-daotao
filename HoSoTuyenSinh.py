@@ -4,7 +4,7 @@ from selenium import webdriver
 
 class HoSoTuyenSinh:
     def __init__(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(5)
         self.driver.get("https://htql.ctump.edu.vn/ctump/tuyensinh/admin")
         self.driver.find_element_by_name('txtUsername').send_keys("admin")
@@ -25,6 +25,7 @@ class HoSoTuyenSinh:
 
 bot = HoSoTuyenSinh()
 list_of_maso = []
+
 for maso in list_of_maso:
     try:
         bot.nhap(maso)
