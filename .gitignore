@@ -222,3 +222,4 @@ pip-selfcheck.json
 .idea/python-daotao.iml
 .idea/vcs.xml
 secret.py
+/chromedriver.exe

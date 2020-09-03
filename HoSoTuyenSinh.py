@@ -5,6 +5,7 @@ from selenium import webdriver
 class HoSoTuyenSinh:
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
         self.driver.implicitly_wait(5)
         self.driver.get("https://htql.ctump.edu.vn/ctump/tuyensinh/admin")
         self.driver.find_element_by_name('txtUsername').send_keys("admin")
@@ -24,7 +25,8 @@ class HoSoTuyenSinh:
 
 
 bot = HoSoTuyenSinh()
-list_of_maso = []
+list_of_maso = [672987, 708088, 418595, 629205, 795965, 177350, 493542, 372418, 340299, 788833, 125756, 908923, 159958,
+                743483]
 
 for maso in list_of_maso:
     try:
