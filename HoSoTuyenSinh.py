@@ -25,8 +25,7 @@ class HoSoTuyenSinh:
 
 
 bot = HoSoTuyenSinh()
-list_of_maso = [672987, 708088, 418595, 629205, 795965, 177350, 493542, 372418, 340299, 788833, 125756, 908923, 159958,
-                743483]
+list_of_maso = []
 
 for maso in list_of_maso:
     try:

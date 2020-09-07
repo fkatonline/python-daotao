@@ -13,8 +13,8 @@ class Ctump:
         # options = Options()
         # options.headless = True
         # self.driver = webdriver.Firefox(options=options)
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(5)
+        self.driver = webdriver.Chrome()
+        self.driver.implicitly_wait(10)
         self.driver.get("https://htql.ctump.edu.vn/quanly")
         self.driver.find_element_by_id("quanly").click()
         self.driver.find_element_by_class_name("selected") \
