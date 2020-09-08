@@ -1,6 +1,8 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
+
 from secret import user_name, password
 
 
@@ -36,12 +38,14 @@ class LichThi:
             self.driver.get(url)
             self.driver.find_element_by_id("txtHP").send_keys(d)
             self.driver.find_element_by_name("Submit").click()
+            select = Select(self.driver.find_element_by_name('cboRPP'))
+            select.select_by_value("500")
+            self.driver.find_element_by_xpath("//*[contains(text(),'Trạng thái')]").click()
+            # da_dong_tien_xpath = self.driver.find_elements_by_xpath("//*[contains(text(),'Đã thu phí')]")
+            # da_dong_tien = len(da_dong_tien_xpath)
+            # print(f"{d}: {da_dong_tien}")
 
     def dong_tien(self, masv):
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
         self.driver.find_element_by_name("txtSV").send_keys(masv)
         self.driver.find_element_by_name("txtSV").send_keys(Keys.ENTER)
-
-
-
-
