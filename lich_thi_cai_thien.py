@@ -19,33 +19,43 @@ class LichThi:
         element.send_keys(Keys.RETURN)
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
 
-    def set_lich_tung_sinh_vien(self, mssv, mahp, gd, thoi_gian):
+    def set_lich_tung_sinh_vien(self, mssv, mhp, gd, time):
         self.driver.find_element_by_name("txtSV").send_keys(mssv)
-        self.driver.find_element_by_id("txtHP").send_keys(mahp)
+        self.driver.find_element_by_id("txtHP").send_keys(mhp)
         self.driver.find_element_by_name("Submit").click()
         self.driver.find_element_by_id("chkAll").click()
         self.driver.find_element_by_css_selector("#form1 > div:nth-child(4) > a:nth-child(3)").click()
         self.driver.find_element_by_name("txtPhongthi").send_keys(gd)
-        self.driver.find_element_by_name("txtNgaygio").send_keys(thoi_gian)
+        self.driver.find_element_by_name("txtNgaygio").send_keys(time)
         self.driver.find_element_by_name("button1").click()
         sleep(1)
 
-    def check_lich_thi(self, data):
-        url = "https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php"
-        for d in data:
-            self.driver.execute_script("window.open('','_blank');")
-            self.driver.switch_to.window(self.driver.window_handles[-1])
-            self.driver.get(url)
-            self.driver.find_element_by_id("txtHP").send_keys(d)
-            self.driver.find_element_by_name("Submit").click()
-            select = Select(self.driver.find_element_by_name('cboRPP'))
-            select.select_by_value("500")
-            self.driver.find_element_by_xpath("//*[contains(text(),'Trạng thái')]").click()
-            # da_dong_tien_xpath = self.driver.find_elements_by_xpath("//*[contains(text(),'Đã thu phí')]")
-            # da_dong_tien = len(da_dong_tien_xpath)
-            # print(f"{d}: {da_dong_tien}")
+    def filter_by_mhp(self, mhp):
+        self.driver.execute_script("window.open('','_blank');")
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
+        self.driver.find_element_by_id("txtHP").send_keys(mhp)
+        self.driver.find_element_by_name("Submit").click()
+        select = Select(self.driver.find_element_by_name('cboRPP'))
+        select.select_by_value("500")
+        self.driver.find_element_by_xpath("//*[contains(text(),'Trạng thái')]").click()
 
     def dong_tien(self, masv):
         self.driver.get("https://htql.ctump.edu.vn/ctump/dichvucong/admin/caithiendiem.php")
         self.driver.find_element_by_name("txtSV").send_keys(masv)
         self.driver.find_element_by_name("txtSV").send_keys(Keys.ENTER)
+
+    def set_lich_mhp(self, mhp):
+        self.filter_by_mhp(mhp)
+        try:
+            gio_phong_value = self.driver.find_element_by_xpath("//table/tbody/tr[2]/td[9]").text.rsplit("-", 1)
+            gio_phong_key = ["time", "phong"]
+            gio_phong_dict = dict(zip(gio_phong_key, gio_phong_value))
+            print(gio_phong_dict)
+        except:
+            print(f"{mhp} khong co sinh vien thi cai thien")
+            return
+        self.driver.find_element_by_id("chkAll").click()
+        self.driver.find_element_by_xpath("//*[contains(text(),'Lịch thi')]").click()
+        self.driver.find_element_by_name("txtPhongthi").send_keys(gio_phong_dict['phong'])
+        self.driver.find_element_by_name("txtNgaygio").send_keys(gio_phong_dict['time'])
