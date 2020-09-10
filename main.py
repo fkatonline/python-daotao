@@ -23,7 +23,8 @@ YY0601
 YY0602
 YY0602
 YY0607"""
-data = set(raw_data.split())
+data = raw_data.split()
+print(data)
 bot = LichThi()
 for d in data:
     # bot.set_lich_mhp(d)

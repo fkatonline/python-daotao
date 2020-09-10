@@ -2,7 +2,6 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
-
 from secret import user_name, password
 
 
