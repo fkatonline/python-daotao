@@ -1,4 +1,3 @@
-from ctump import Ctump
 from lich_thi_cai_thien import LichThi
 
 # i = 1
@@ -9,23 +8,19 @@ from lich_thi_cai_thien import LichThi
 #     i = i + 1
 # bot.driver.quit()
 
-raw_data = """YY0611
-YT0305
-YT0306
-CB0501
-YY0926
-YY0902
-CB0204
-YT0417
-YT0401
-YY1006
-YY0601
-YY0602
-YY0602
-YY0607"""
-data = raw_data.split()
-print(data)
+raw_data = """YY0312
+CB0205
+YY1907
+DD0205
+YY0402
+CB0405
+YY1716
+YY1716
+YY1009"""
 bot = LichThi()
-for d in data:
-    # bot.set_lich_mhp(d)
-    bot.filter_by_mhp(d)
+# data = raw_data.split()
+# for d in data:
+#     # bot.set_lich_mhp(d)
+#     bot.filter_by_mhp(d)
+bot.dong_tien(1933010123)
+

@@ -33,8 +33,10 @@ class Ctump:
         self.driver.find_element_by_id("cmb_s_sr_mhsv").click()
         data_html = self.driver.find_element_by_id("tb_xemdiemtoankhoasinhvien_diemtoankhoa").get_attribute("outerHTML")
         df = pd.read_html(data_html)[0]
+        df.drop(df.tail(1).index, inplace=True)
+        nam_hoc_list = [number for number in df["Năm học"]]
         diem_list = [number for number in df["Điểm HP tổng hợp"]]
-        return {"mssv": mssv, "mhp": mhp, "diem": diem_list}
+        return {"mssv": mssv, "mhp": mhp, "nam_hoc": nam_hoc_list, "diem": diem_list}
 
     def xoa_chua_dong_tien(self, mssv):
         url = "https://htql.ctump.edu.vn/quanly/dangkyhocphan/qlsvdangkyhoclai"
