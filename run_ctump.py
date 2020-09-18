@@ -1,5 +1,15 @@
 from ctump import Ctump
 
 bot = Ctump()
+data =[
+  {
+    "mssv": 1733070052,
+    "mhp": "YY1117"
+  },
 
-print(bot.get_diem("1453010234", "YY0101"))
+]
+try:
+    for row in data:
+        print(bot.get_diem(row["mssv"], row["mhp"]))
+except:
+    pass

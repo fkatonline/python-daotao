@@ -25,8 +25,9 @@ class HoSoTuyenSinh:
 
 
 bot = HoSoTuyenSinh()
-list_of_maso = []
-
+maso_raw = """
+"""
+list_of_maso = maso_raw.split()
 for maso in list_of_maso:
     try:
         bot.nhap(maso)
