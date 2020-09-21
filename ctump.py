@@ -4,6 +4,7 @@ from selenium import webdriver
 import pandas as pd
 # from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
 
 from secret import USERNAME, PASSWORD
 
@@ -69,3 +70,11 @@ class Ctump:
                 self.driver.find_element_by_id("btThucHien").click()
             except:
                 pass
+
+    def loc_danh_sach_hoc_lai_chua_duyet(self):
+        self.driver.get("https://htql.ctump.edu.vn/quanly/dangkyhocphan/qlsvdangkyhoclai")
+        duoc_duyet = Select(self.driver.find_element_by_id("cmb_sr_frm_2"))
+        duoc_duyet.select_by_value("dkhl_duoc_duyet")
+        chua_duyet_dang_ky = Select(self.driver.find_element_by_id("cmba_sr_frm_dkhl_duoc_duyet"))
+        chua_duyet_dang_ky.select_by_value("0")
+        self.driver.find_element_by_id("cmb_s_sr_frm").click()

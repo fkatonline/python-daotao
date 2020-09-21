@@ -26,6 +26,16 @@ class HoSoTuyenSinh:
 
 bot = HoSoTuyenSinh()
 maso_raw = """
+620885
+576402
+666326
+765786
+787343
+913880
+550113
+582313
+140402
+190977
 """
 list_of_maso = maso_raw.split()
 for maso in list_of_maso:
