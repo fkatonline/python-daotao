@@ -78,3 +78,15 @@ class Ctump:
         chua_duyet_dang_ky = Select(self.driver.find_element_by_id("cmba_sr_frm_dkhl_duoc_duyet"))
         chua_duyet_dang_ky.select_by_value("0")
         self.driver.find_element_by_id("cmb_s_sr_frm").click()
+
+    def get_table_data(self, table_id):
+        data_html = self.driver.find_element_by_id(table_id).get_attribute("outerHTML")
+        df = pd.read_html(data_html)[0]
+        df.drop(df.tail(1).index, inplace=True)
+        return df
+
+    def check_diem_hoc_lai_cai_thien(self, table_id="tb_qlsvdangkyhoclai"):
+        self.loc_danh_sach_hoc_lai_chua_duyet()
+        df = self.get_table_data(table_id)
+        df = df[['Mã sinh viên', 'Mã học phần']]
+        return df

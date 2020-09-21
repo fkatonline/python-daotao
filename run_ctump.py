@@ -1,4 +1,4 @@
 from ctump import Ctump
 
 bot = Ctump()
-bot.loc_danh_sach_hoc_lai_chua_duyet()
+bot.check_diem_hoc_lai_cai_thien()
