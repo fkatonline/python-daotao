@@ -89,4 +89,6 @@ class Ctump:
         self.loc_danh_sach_hoc_lai_chua_duyet()
         df = self.get_table_data(table_id)
         df = df[['Mã sinh viên', 'Mã học phần']]
-        return df
+        df.columns = ['mssv', 'mhp']
+        data = df.to_dict('records')
+        return data

@@ -22,5 +22,5 @@ bot = LichThi()
 # for d in data:
 #     # bot.set_lich_mhp(d)
 #     bot.filter_by_mhp(d)
-bot.dong_tien(1933010123)
+bot.dong_tien(1653010173)
 

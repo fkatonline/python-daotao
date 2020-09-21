@@ -26,26 +26,7 @@ class HoSoTuyenSinh:
 
 bot = HoSoTuyenSinh()
 maso_raw = """
-247129
-149484
-541573
-684240
-080304
-791226
-021040
-376435
-732991
-175159
-205197
-336129
-470328
-050091
-524267
-860636
-698040
-698100
-466339
-778336
+
 """
 list_of_maso = maso_raw.split()
 for maso in list_of_maso:
