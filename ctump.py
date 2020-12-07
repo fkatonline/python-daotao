@@ -5,7 +5,6 @@ import pandas as pd
 # from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
-
 from secret import USERNAME, PASSWORD
 
 
@@ -15,7 +14,7 @@ class Ctump:
         # options.headless = True
         # self.driver = webdriver.Firefox(options=options)
         self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(15)
         self.driver.get("https://htql.ctump.edu.vn/quanly")
         self.driver.find_element_by_id("quanly").click()
         self.driver.find_element_by_class_name("selected") \
@@ -26,10 +25,7 @@ class Ctump:
             .find_element_by_id("pw_Login_mat_khau").submit()
 
     def get_diem(self, mssv, mhp):
-        self.driver.get("https://htql.ctump.edu.vn/quanly/diem/xemdiemtoankhoasinhvien")
-        self.driver.find_element_by_id("txt_sr_index_ma_sinh_vien").send_keys(mssv)
-        self.driver.find_element_by_id("cmb_s_sr_index").click()
-        self.driver.find_element_by_id("rd_xemdiemtoankhoasinhvien_chon_0").click()
+        self.xem_diem_toan_khoa_sinh_vien(mssv)
         self.driver.find_element_by_id("txt_sr_mhsv_ma_mon_hoc").send_keys(mhp)
         self.driver.find_element_by_id("cmb_s_sr_mhsv").click()
         data_html = self.driver.find_element_by_id("tb_xemdiemtoankhoasinhvien_diemtoankhoa").get_attribute("outerHTML")
@@ -39,6 +35,18 @@ class Ctump:
         diem_list = [number for number in df["Điểm HP tổng hợp"]]
         return {"mssv": mssv, "mhp": mhp, "nam_hoc": nam_hoc_list, "diem": diem_list}
 
+    def xem_diem_toan_khoa_sinh_vien(self, mssv):
+        url = "https://htql.ctump.edu.vn/quanly/diem/xemdiemtoankhoasinhvien"
+        self.driver.execute_script("window.open('','_blank');")
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.driver.get(url)
+        self.driver.find_element_by_id("txt_sr_index_ma_sinh_vien").send_keys(mssv)
+        self.driver.find_element_by_id("cmb_s_sr_index").click()
+        self.driver.find_element_by_id("rd_xemdiemtoankhoasinhvien_chon_0").click()
+        select = Select(self.driver.find_element_by_id('cmb_num_break_list_sr_mhsv'))
+        select.select_by_value('500')
+        self.driver.find_element_by_id('cmb_s_sr_mhsv').click()
+
     def xoa_chua_dong_tien(self, mssv):
         url = "https://htql.ctump.edu.vn/quanly/dangkyhocphan/qlsvdangkyhoclai"
         for m in mssv:
@@ -47,6 +55,7 @@ class Ctump:
             self.driver.get(url)
             self.driver.find_element_by_id("txt_sr_frm_ma_sinh_vien").send_keys(m)
             self.driver.find_element_by_id("cmb_s_sr_frm").click()
+            print(m)
             try:
                 self.driver.find_element_by_id("chk_qlsvdangkyhoclai_check_all").click()
                 self.driver.find_element_by_id("btnDelete").click()
@@ -57,7 +66,7 @@ class Ctump:
     def xoa_diem(self, data):
         for d in data:
             self.driver.get("https://htql.ctump.edu.vn/quanly/diem/nhapdiemhocphan")
-            self.driver.find_element_by_id("txt_sr_index_ma_mon_hoc").send_keys(d["mahp"])
+            self.driver.find_element_by_id("txt_sr_index_ma_mon_hoc").send_keys(d["mhp"])
             self.driver.find_element_by_id("cmb_s_sr_index").click()
             self.driver.find_element_by_id("rd_list_nhap_0").click()
             self.driver.find_element_by_id("btNhapHP").click()
@@ -92,3 +101,5 @@ class Ctump:
         df.columns = ['mssv', 'mhp']
         data = df.to_dict('records')
         return data
+
+

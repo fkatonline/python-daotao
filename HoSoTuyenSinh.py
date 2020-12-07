@@ -34,3 +34,4 @@ for maso in list_of_maso:
         bot.nhap(maso)
     except:
         pass
+bot.driver.switch_to.window(bot.driver.window_handles[1])
