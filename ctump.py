@@ -14,7 +14,7 @@ class Ctump:
         # options.headless = True
         # self.driver = webdriver.Firefox(options=options)
         self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(15)
+        self.driver.implicitly_wait(30)
         self.driver.get("https://htql.ctump.edu.vn/quanly")
         self.driver.find_element_by_id("quanly").click()
         self.driver.find_element_by_class_name("selected") \
@@ -34,18 +34,6 @@ class Ctump:
         nam_hoc_list = [number for number in df["Năm học"]]
         diem_list = [number for number in df["Điểm HP tổng hợp"]]
         return {"mssv": mssv, "mhp": mhp, "nam_hoc": nam_hoc_list, "diem": diem_list}
-
-    def xem_diem_toan_khoa_sinh_vien(self, mssv):
-        url = "https://htql.ctump.edu.vn/quanly/diem/xemdiemtoankhoasinhvien"
-        self.driver.execute_script("window.open('','_blank');")
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-        self.driver.get(url)
-        self.driver.find_element_by_id("txt_sr_index_ma_sinh_vien").send_keys(mssv)
-        self.driver.find_element_by_id("cmb_s_sr_index").click()
-        self.driver.find_element_by_id("rd_xemdiemtoankhoasinhvien_chon_0").click()
-        select = Select(self.driver.find_element_by_id('cmb_num_break_list_sr_mhsv'))
-        select.select_by_value('500')
-        self.driver.find_element_by_id('cmb_s_sr_mhsv').click()
 
     def xoa_chua_dong_tien(self, mssv):
         url = "https://htql.ctump.edu.vn/quanly/dangkyhocphan/qlsvdangkyhoclai"
@@ -101,5 +89,33 @@ class Ctump:
         df.columns = ['mssv', 'mhp']
         data = df.to_dict('records')
         return data
+
+    def xem_diem_toan_khoa_sinh_vien(self, mssv):
+        url = "https://htql.ctump.edu.vn/quanly/diem/xemdiemtoankhoasinhvien"
+        self.driver.execute_script("window.open('','_blank');")
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.driver.get(url)
+        self.driver.find_element_by_id("txt_sr_index_ma_sinh_vien").send_keys(mssv)
+        self.driver.find_element_by_id("cmb_s_sr_index").click()
+        self.driver.find_element_by_id("rd_xemdiemtoankhoasinhvien_chon_0").click()
+        select = Select(self.driver.find_element_by_id('cmb_num_break_list_sr_mhsv'))
+        select.select_by_value('500')
+        self.driver.find_element_by_id('cmb_s_sr_mhsv').click()
+
+    def ds_sv_chua_chia_phong(self, mhp):
+        url = "https://htql.ctump.edu.vn/quanly/diem/danhsachhocphan"
+        self.driver.execute_script("window.open('','_blank');")
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.driver.get(url)
+        self.driver.find_element_by_id("txt_sr_ma_mon_hoc").send_keys(mhp)
+        self.driver.find_element_by_id("cmb_s_sr").click()
+        self.driver.find_element_by_id("img_danhsachhocphan_chitiet_0").click()
+        select = Select(self.driver.find_element_by_id("cmb_sr_sv_phong_thi_kq_chia_phong_thi"))
+        select.select_by_value("0")
+        self.driver.find_element_by_id("cmb_s_sr_sv").click()
+
+
+
+
 
 
