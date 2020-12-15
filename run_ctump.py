@@ -7,17 +7,7 @@ bot = Ctump()
 # except:
 #     pass
 # bot.loc_danh_sach_hoc_lai_chua_duyet()
-data = ["RH0403",
-        "RH0404",
-        "RH0501",
-        "YT0201",
-        "RH0310",
-        "RH0311",
-        "RH0109",
-        "RH0110",
-        "RH0610",
-        "RH0611",
-        "RH0508"
-        ]
+data = ["CB0302",
+        "CB0401"]
 for item in data:
     bot.ds_sv_chua_chia_phong(item)
