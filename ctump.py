@@ -1,29 +1,18 @@
 from time import sleep
-
-from selenium import webdriver
 import pandas as pd
-# from selenium.webdriver.firefox.options import Options
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.select import Select
 from secret import USERNAME, PASSWORD
+from helium import *
 
 
 class Ctump:
     def __init__(self):
-        # options = Options()
-        # options.headless = True
-        # self.driver = webdriver.Firefox(options=options)
-        self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(60)
-        self.driver.get("https://htql.ctump.edu.vn/quanly")
-        self.driver.find_element_by_id("quanly").click()
-        self.driver.find_element_by_class_name("selected") \
-            .find_element_by_id("txt_Login_ten_dang_nhap").send_keys(USERNAME)
-        self.driver.find_element_by_class_name("selected") \
-            .find_element_by_id("pw_Login_mat_khau").send_keys(PASSWORD)
-        self.driver.find_element_by_class_name("selected") \
-            .find_element_by_id("pw_Login_mat_khau").submit()
+        Config.implicit_wait_secs = 60
+        self.driver = start_chrome("https://htql.ctump.edu.vn/quanly")
+        click(S('#quanly'))
+        write(USERNAME)
+        press(TAB)
+        write(PASSWORD)
+        press(ENTER)
 
     def get_diem(self, mssv, mhp):
         self.xem_diem_toan_khoa_sinh_vien(mssv)
@@ -105,46 +94,11 @@ class Ctump:
         self.driver.find_element_by_id('cmb_s_sr_mhsv').click()
 
     def ds_sv_chua_chia_phong(self, mhp):
-        url = "https://htql.ctump.edu.vn/quanly/diem/danhsachhocphan"
         self.driver.execute_script("window.open('','_blank');")
         self.driver.switch_to.window(self.driver.window_handles[-1])
-        self.driver.get(url)
-        self.driver.find_element_by_id("txt_sr_ma_mon_hoc").send_keys(mhp)
-        self.driver.find_element_by_id("cmb_s_sr").click()
-        self.driver.find_element_by_id("img_danhsachhocphan_chitiet_0").click()
-        select = Select(self.driver.find_element_by_id("cmb_sr_sv_phong_thi_kq_chia_phong_thi"))
-        select.select_by_value("0")
-        self.driver.find_element_by_id("cmb_s_sr_sv").click()
-
-    def duyet_khht(self):
-        url = "https://htql.ctump.edu.vn/quanly/kehoach/dslop"
-        self.driver.execute_script("window.open('','_blank');")
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-        self.driver.get(url)
-        select = Select(self.driver.find_element_by_xpath('//*[@id="cmb_sr_ds_hoc_ky"]'))
-        select.select_by_value('2')
-        select = Select(self.driver.find_element_by_xpath('//*[@id="cmb_sr_3"]'))
-        select.select_by_value('ten_lop')
-        self.driver.find_element_by_name('btn_sr_ten_lop').click()
-        self.driver.find_element_by_xpath('//*[@id="txt_sr_ten_lop"]').send_keys('205304A' + Keys.ENTER)
-        self.driver.find_element_by_id('img_dslop_chon_0').click()
-        select = Select(self.driver.find_element_by_name('cmb_num_break_list_frm_search'))
-        select.select_by_value('500')
-        self.driver.find_element_by_id('cmb_s_frm_search').click()
-        sinh_viens = self.driver.find_elements_by_name('img_dssinhviencualop_kehoachHT')
-        counter = 97
-
-        while counter < len(sinh_viens):
-            try:
-                sinh_viens[counter].click()
-                self.driver.find_element_by_id('chk_khhtsinhvien_check_all_col_7').click()
-                self.driver.find_element_by_id('btnDuyet').click()
-                self.driver.find_element_by_id('bt_khhtsinhvien_submit').click()
-                sleep(3)
-                self.driver.find_element_by_id('btTroVe').click()
-                sinh_viens = self.driver.find_elements_by_name('img_dssinhviencualop_kehoachHT')
-                counter = counter + 1
-            except:
-                print(counter)
-                self.driver.quit()
-
+        go_to('https://htql.ctump.edu.vn/quanly/diem/danhsachhocphan')
+        write(mhp)
+        press(ENTER)
+        click(S('@img_danhsachhocphan_chitiet'))
+        select(r'DSSV đã chia phòng', r'DSSV chưa chia phòng')
+        click(r'Tìm')
