@@ -1,5 +1,7 @@
 from time import sleep
 import pandas as pd
+from selenium.webdriver.support.select import Select
+
 from secret import USERNAME, PASSWORD
 from helium import *
 
