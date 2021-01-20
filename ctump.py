@@ -18,10 +18,9 @@ class Ctump:
 
     def get_diem(self, mssv, mhp):
         self.xem_diem_toan_khoa_sinh_vien(mssv)
-        self.driver.find_element_by_id("txt_sr_mhsv_ma_mon_hoc").send_keys(mhp)
-        self.driver.find_element_by_id("cmb_s_sr_mhsv").click()
-        data_html = self.driver.find_element_by_id("tb_xemdiemtoankhoasinhvien_diemtoankhoa").get_attribute(
-            "outerHTML")
+        write(mhp, into=S("@txt_sr_mhsv_ma_mon_hoc"))
+        click(S("#cmb_s_sr_mhsv"))
+        data_html = S("#tb_xemdiemtoankhoasinhvien_diemtoankhoa").web_element.get_attribute("outerHTML")
         df = pd.read_html(data_html)[0]
         df.drop(df.tail(1).index, inplace=True)
         nam_hoc_list = [number for number in df["Năm học"]]
@@ -89,11 +88,8 @@ class Ctump:
         self.driver.switch_to.window(self.driver.window_handles[-1])
         self.driver.get(url)
         self.driver.find_element_by_id("txt_sr_index_ma_sinh_vien").send_keys(mssv)
-        self.driver.find_element_by_id("cmb_s_sr_index").click()
-        self.driver.find_element_by_id("rd_xemdiemtoankhoasinhvien_chon_0").click()
-        select = Select(self.driver.find_element_by_id('cmb_num_break_list_sr_mhsv'))
-        select.select_by_value('500')
-        self.driver.find_element_by_id('cmb_s_sr_mhsv').click()
+        click(Button("Tìm"))
+        click(S("#rd_xemdiemtoankhoasinhvien_chon_0"))
 
     def ds_sv_chua_chia_phong(self, mhp):
         self.driver.execute_script("window.open('','_blank');")

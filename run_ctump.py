@@ -8,11 +8,17 @@ bot = Ctump()
 #     pass
 # bot.loc_danh_sach_hoc_lai_chua_duyet()
 
-# data = """yy0201
-# yy0101
-# """.split()
-# for item in data:
-#     bot.ds_sv_chua_chia_phong(item)
-
-# bot.duyet_khht()
-bot.ds_sv_chua_chia_phong('yy0101')
+data = """1453010234
+1653010025
+1653010025
+1653010417
+1853070033
+""".split()
+data1 = [
+    {
+        "mssv": 1653010417,
+        "mhp": "YY1703"
+    }
+]
+for item in data1:
+    print(bot.get_diem(item['mssv'], item['mhp']))
