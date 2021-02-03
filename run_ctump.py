@@ -15,10 +15,18 @@ data = """1453010234
 1853070033
 """.split()
 data1 = [
-    {
-        "mssv": 1653010417,
-        "mhp": "YY1703"
-    }
+  {
+    "mssv": 1453020039,
+    "mhp": "RH0108"
+  },
+  {
+    "mssv": 1653080121,
+    "mhp": "YY0801"
+  },
+  {
+    "mssv": 1753070057,
+    "mhp": "YY0404"
+  }
 ]
 for item in data1:
     print(bot.get_diem(item['mssv'], item['mhp']))
