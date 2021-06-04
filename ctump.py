@@ -9,7 +9,7 @@ from helium import *
 class Ctump:
     def __init__(self):
         Config.implicit_wait_secs = 60
-        self.driver = start_chrome("https://htql.ctump.edu.vn/quanly")
+        self.driver = start_firefox("https://htql.ctump.edu.vn/quanly")
         click(S('#quanly'))
         write(USERNAME)
         press(TAB)
@@ -100,3 +100,25 @@ class Ctump:
         click(S('@img_danhsachhocphan_chitiet'))
         select(r'DSSV đã chia phòng', r'DSSV chưa chia phòng')
         click(r'Tìm')
+
+    def duyet_khht(self, mssv):
+        # duyet ke hoach hoc tap cho YHDP46
+        go_to("https://htql.ctump.edu.vn/quanly/kehoach/dslop")
+        select = Select(self.driver.find_element_by_id('cmb_sr_ds_hoc_ky'))
+        select.select_by_value('3')
+        select = Select(self.driver.find_element_by_id('cmb_sr_3'))
+        select.select_by_value('ten_lop')
+        select = Select(self.driver.find_element_by_id('cmba_sr_ten_lop'))
+        select.select_by_value('205304A')
+        click("Tìm")
+        click(S("#img_dslop_chon_0"))
+        write(mssv, into=S("#txt_frm_search_ma_sinh_vien"))
+        click("Tìm")
+        click(S("#img_dssinhviencualop_kehoachHT_0"))
+        click(S("#btnDuyet"))
+        click("Các học phần trong năm học (2020-2021) - học kỳ (Hè)")
+        click("Thực hiện")
+
+
+
+
