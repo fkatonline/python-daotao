@@ -43,22 +43,21 @@ class Ctump:
             except:
                 pass
 
-    def xoa_diem(self, data):
-        for d in data:
-            self.driver.get("https://htql.ctump.edu.vn/quanly/diem/nhapdiemhocphan")
-            self.driver.find_element_by_id("txt_sr_index_ma_mon_hoc").send_keys(d["mhp"])
-            self.driver.find_element_by_id("cmb_s_sr_index").click()
-            self.driver.find_element_by_id("rd_list_nhap_0").click()
-            self.driver.find_element_by_id("btNhapHP").click()
-            try:
-                self.driver.find_element_by_id("txt_sr_dsdsv_ma_sinh_vien").send_keys(d["mssv"])
-                self.driver.find_element_by_id("cmb_s_sr_dsdsv").click()
-                cac_cot_diem = self.driver.find_elements_by_xpath("//input[contains(@name,'txt_list')]")
-                for c in cac_cot_diem:
-                    c.clear()
-                self.driver.find_element_by_id("btThucHien").click()
-            except:
-                pass
+    def xoa_diem(self, mssv, mhp):
+        self.driver.get("https://htql.ctump.edu.vn/quanly/diem/nhapdiemhocphan")
+        self.driver.find_element_by_id("txt_sr_index_ma_mon_hoc").send_keys(mhp)
+        self.driver.find_element_by_id("cmb_s_sr_index").click()
+        self.driver.find_element_by_id("rd_list_nhap_0").click()
+        self.driver.find_element_by_id("btNhapHP").click()
+        try:
+            self.driver.find_element_by_id("txt_sr_dsdsv_ma_sinh_vien").send_keys(mssv)
+            self.driver.find_element_by_id("cmb_s_sr_dsdsv").click()
+            cac_cot_diem = self.driver.find_elements_by_xpath("//input[contains(@name,'txt_list')]")
+            for c in cac_cot_diem:
+                c.clear()
+            self.driver.find_element_by_id("btThucHien").click()
+        except:
+            pass
 
     def loc_danh_sach_hoc_lai_chua_duyet(self):
         self.driver.get("https://htql.ctump.edu.vn/quanly/dangkyhocphan/qlsvdangkyhoclai")
@@ -105,7 +104,7 @@ class Ctump:
         # duyet ke hoach hoc tap cho YHDP46
         go_to("https://htql.ctump.edu.vn/quanly/kehoach/dslop")
         select = Select(self.driver.find_element_by_id('cmb_sr_ds_hoc_ky'))
-        select.select_by_value('3')
+        select.select_by_value('1')
         select = Select(self.driver.find_element_by_id('cmb_sr_3'))
         select.select_by_value('ten_lop')
         select = Select(self.driver.find_element_by_id('cmba_sr_ten_lop'))
@@ -114,9 +113,10 @@ class Ctump:
         click(S("#img_dslop_chon_0"))
         write(mssv, into=S("#txt_frm_search_ma_sinh_vien"))
         click("Tìm")
+        sleep(2)
         click(S("#img_dssinhviencualop_kehoachHT_0"))
         click(S("#btnDuyet"))
-        click("Các học phần trong năm học (2020-2021) - học kỳ (Hè)")
+        click("Các học phần trong năm học (2021-2022) - học kỳ (1)")
         click("Thực hiện")
 
 
