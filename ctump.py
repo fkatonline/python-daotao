@@ -101,13 +101,13 @@ class Ctump:
         click(r'Tìm')
 
     def duyet_khht(self, mssv):
-        # duyet ke hoach hoc tap cho YHDP46
         go_to("https://htql.ctump.edu.vn/quanly/kehoach/dslop")
         select = Select(self.driver.find_element_by_id('cmb_sr_ds_hoc_ky'))
         select.select_by_value('1')
         select = Select(self.driver.find_element_by_id('cmb_sr_3'))
         select.select_by_value('ten_lop')
         select = Select(self.driver.find_element_by_id('cmba_sr_ten_lop'))
+        # duyet ke hoach hoc tap cho YHDP46
         select.select_by_value('205304A')
         click("Tìm")
         click(S("#img_dslop_chon_0"))
